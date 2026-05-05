@@ -69,12 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
 
             try {
-                // Here we will point to the local n8n webhook or a placeholder for now
-                // Replace this URL with the actual n8n production webhook URL later
-                const WEBHOOK_URL = 'http://localhost:5678/webhook/lead-capture';
+                // Webhook de Producción de n8n
+                const WEBHOOK_URL = 'https://n8n.clubdigitalstore.com/webhook/lead-capture';
                 
-                // For demonstration, we simulate the fetch if n8n is not running yet
-                /* 
                 const response = await fetch(WEBHOOK_URL, {
                     method: 'POST',
                     headers: {
@@ -82,11 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     body: JSON.stringify(data)
                 });
-                if (!response.ok) throw new Error('Network response was not ok');
-                */
                 
-                // Simulated success delay
-                await new Promise(r => setTimeout(r, 1000));
+                if (!response.ok) throw new Error('Network response was not ok');
 
                 formStatus.textContent = '¡Solicitud enviada con éxito! Nos pondremos en contacto pronto.';
                 formStatus.classList.add('success');
