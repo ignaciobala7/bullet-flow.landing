@@ -1,0 +1,44 @@
+# Construcción de Landing Page: BulletFlow
+
+Este plan detalla cómo construiremos tu página web oficial de conversión para la agencia BulletFlow, cumpliendo con la tarea de la Semana 2 de tu Roadmap.
+
+## Objetivo
+Desarrollar una Landing Page estática, rápida y de alta conversión. Utilizaremos el **Manual de Marca** (estética Dark Tech, Azul profundo y Neon Cyan) y el **Copy basado en la Fórmula PAS** (Problema, Agitación, Solución) que definimos previamente en Notion.
+
+> [!IMPORTANT]
+> **User Review Required**
+> Para la estructura tecnológica, estoy proponiendo usar **HTML5, CSS Puro y JavaScript vanilla**. Esta es la forma más limpia y rápida de construir una landing page altamente personalizable sin depender de frameworks pesados, cumpliendo con las mejores prácticas web. ¿Estás de acuerdo con este stack tecnológico?
+
+## Cambios Propuestos
+
+El proyecto se creará en un nuevo directorio local: `C:\Users\ibala\.gemini\antigravity\scratch\bulletflow-landing`
+
+### Estructura del Proyecto
+
+#### [NEW] `index.html`
+*   Estructura semántica de la página.
+*   **Sección Hero:** Tu propuesta de valor principal (One-Liner).
+*   **Sección Problema (P):** "¿La tecnología te frena?".
+*   **Sección Agitación (A):** Consecuencias de la parálisis tecnológica.
+*   **Sección Solución (S):** Tus servicios (Llave en Mano vs. Impulso/Escala con IA).
+*   **Sección Pricing:** Los 3 niveles (Starter, Growth, Scale) que definimos.
+
+#### [NEW] `style.css`
+*   Implementación de tu paleta de colores (Deep Space Black, Tech Azure, Neon Cyan).
+*   Tipografías modernas (Google Fonts: Outfit / Inter).
+*   Efectos de *glassmorphism* (cristal) y botones con brillo de neón.
+*   Diseño responsivo (adaptable 100% a celulares).
+
+#### [NEW] `script.js`
+*   Micro-animaciones al hacer scroll (los elementos aparecen suavemente).
+*   Lógica para navegación fluida.
+
+#### [NEW] `assets/`
+*   Carpeta para almacenar el logo conceptual de BulletFlow que generamos.
+
+## Plan de Verificación
+
+### Pruebas Manuales
+1.  **Ejecución Local:** Abriré el archivo `index.html` usando mis herramientas del navegador.
+2.  **Auditoría Visual:** Verificaré que los colores, fuentes y efectos de neón se vean exactamente como en el *Moodboard* de tu Manual de Marca.
+3.  **Auditoría de Texto:** Me aseguraré de que todo el texto oficial (Problema, Agitación, Solución y Precios) esté inyectado correctamente.

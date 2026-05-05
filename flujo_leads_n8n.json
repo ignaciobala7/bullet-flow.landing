@@ -1,0 +1,77 @@
+{
+  "name": "BulletFlow - Lead Capture (Web -> SQL -> Email)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-capture",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "name": "Webhook Landing Page",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "bulletflow-lead-capture"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO leads (name, email, store_url, problem) VALUES ('{{$json.body.name}}', '{{$json.body.email}}', '{{$json.body.store_url}}', '{{$json.body.problem}}');"
+      },
+      "name": "Guardar en SQL (CRM)",
+      "type": "n8n-nodes-base.sqlite",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$node[\"Webhook Landing Page\"].json.body.email}}",
+        "subject": "Solicitud Recibida - BulletFlow Agency 🚀",
+        "message": "Hola {{$node[\"Webhook Landing Page\"].json.body.name}},\n\nHe recibido tu solicitud para escalar tu e-commerce. He notado que tu cuello de botella es: \"{{$node[\"Webhook Landing Page\"].json.body.problem}}\".\n\nMe pondré en contacto contigo en breve para agendar nuestra llamada.\n\nSaludos,\nIgnacio Bala\nBulletFlow Agency",
+        "options": {}
+      },
+      "name": "Email de Confirmación",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        750,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook Landing Page": {
+      "main": [
+        [
+          {
+            "node": "Guardar en SQL (CRM)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Guardar en SQL (CRM)": {
+      "main": [
+        [
+          {
+            "node": "Email de Confirmación",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true
+  }
+}
