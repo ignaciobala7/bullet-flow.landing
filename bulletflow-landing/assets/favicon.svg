@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a3050"/>
+      <stop offset="100%" stop-color="#080f1e"/>
+    </linearGradient>
+    <linearGradient id="bul" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="45%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+  <!-- Fondo redondeado navy -->
+  <rect width="32" height="32" rx="7" fill="url(#bg)"/>
+  <!-- Bala rotada 45° apuntando arriba-derecha -->
+  <g transform="translate(16,16) rotate(-45)">
+    <!-- Cuerpo de la bala -->
+    <path d="M0,-10 C3,-10 5,-6 5,-2 L5,5 Q5,9 0,9 Q-5,9 -5,5 L-5,-2 C-5,-6 -3,-10 0,-10Z" fill="url(#bul)"/>
+    <!-- Reflejo de luz -->
+    <path d="M1.5,-8.5 C3,-6.5 3.5,-4 3.5,3" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <!-- Ranura de la bala -->
+    <line x1="-5" y1="3" x2="5" y2="3" stroke="rgba(3,105,161,0.9)" stroke-width="1.5"/>
+  </g>
+</svg>
