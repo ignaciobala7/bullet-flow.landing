@@ -48,7 +48,25 @@ body.light-theme {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+img, svg {
+    max-width: 100%;
+}
+
+h1, h2, h3, h4, p, li, summary {
+    overflow-wrap: break-word;
+}
+
+/* Keeps anchored sections clear of the sticky navbar */
+section[id] {
+    scroll-margin-top: 110px;
 }
 
 body {
@@ -322,14 +340,14 @@ h1, h2, h3, h4, .tier-name {
 }
 
 .hero-title {
-    font-size: 3.4rem;
+    font-size: clamp(2.1rem, 4.2vw + 0.9rem, 3.4rem);
     font-weight: 900;
     margin-bottom: 24px;
     line-height: 1.15;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1.05rem, 1vw + 0.8rem, 1.2rem);
     color: var(--text-secondary);
     max-width: 560px;
     margin: 0 0 40px;
@@ -480,7 +498,8 @@ section {
 }
 
 .section-title {
-    font-size: 2.4rem;
+    font-size: clamp(1.7rem, 3.5vw + 0.8rem, 2.4rem);
+    line-height: 1.2;
     text-align: center;
     margin-bottom: 16px;
 }
@@ -706,7 +725,7 @@ section {
 }
 
 .price {
-    font-size: 2.8rem;
+    font-size: clamp(2.2rem, 2.5vw + 1.4rem, 2.8rem);
     font-weight: 700;
     font-family: var(--font-mono);
     margin-bottom: 16px;
@@ -1057,9 +1076,41 @@ section {
 }
 
 /* Responsive */
+.btn-cmd {
+    white-space: nowrap;
+}
+
+.t-ok {
+    white-space: nowrap;
+}
+
+/* Small laptops: tighter nav so links + CTA fit on one row */
+@media (max-width: 1100px) {
+    .nav-links {
+        gap: 18px;
+    }
+
+    .nav-actions {
+        gap: 12px;
+        padding-left: 14px;
+    }
+}
+
+/* Tablet: hero stacks, pricing loses the zoomed card */
 @media (max-width: 1000px) {
+    section,
+    .faq-section,
+    .form-section {
+        padding: 80px 0;
+    }
+
+    .hero {
+        padding: 80px 0 70px;
+    }
+
     .hero-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 48px;
     }
 
     .hero-text {
@@ -1073,70 +1124,432 @@ section {
     .hero-actions {
         justify-content: center;
     }
+
+    .hero-visual {
+        width: 100%;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+
+    .pas-grid {
+        gap: 24px;
+    }
+
+    .pas-card,
+    .sol-card {
+        padding: 32px;
+    }
+
+    .pricing-grid {
+        gap: 20px;
+    }
+
+    .price-card {
+        padding: 36px 22px;
+    }
+
+    .price-card.popular,
+    .price-card.popular:hover {
+        transform: none;
+    }
 }
 
+/* Pricing stacks into a single readable column */
 @media (max-width: 900px) {
     .pricing-grid {
         grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+        gap: 36px;
     }
 
-    .price-card.popular {
-        transform: none;
+    .price-desc {
+        min-height: 0;
     }
 
-    .price-card.popular:hover {
-        transform: translateY(-10px);
+    .features {
+        margin-bottom: 30px;
+    }
+
+    .nav-links {
+        gap: 14px;
+    }
+
+    .nav-links a {
+        font-size: 0.88rem;
     }
 }
 
+/* Phones */
 @media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.4rem;
+    section,
+    .faq-section,
+    .form-section {
+        padding: 64px 0;
     }
 
-    .section-title {
-        font-size: 2rem;
+    .hero {
+        padding: 56px 0 56px;
     }
 
-    .hero-actions {
-        flex-direction: column;
+    .tech-stack {
+        padding: 48px 0;
     }
 
-    .pas-grid, .solution-grid {
-        grid-template-columns: 1fr;
+    .founder-section {
+        padding: 56px 0;
+    }
+
+    .section-head {
+        margin-bottom: 40px;
+    }
+
+    .section-desc {
+        margin-bottom: 40px;
+        font-size: 1rem;
+    }
+
+    section[id] {
+        scroll-margin-top: 72px;
     }
 
     .topbar-line {
         display: none; /* Not enough room on mobile */
     }
 
+    .nav-content {
+        padding: 12px 16px;
+        gap: 10px;
+    }
+
     .nav-links {
         display: none; /* Hide text links on mobile, keep CTA button */
     }
 
+    .logo {
+        gap: 8px;
+        min-width: 0;
+    }
+
+    .logo-img {
+        height: 36px;
+    }
+
+    .logo-prompt {
+        font-size: 1rem;
+    }
+
+    .logo-caret {
+        margin-right: 4px;
+    }
+
     .nav-actions {
-        gap: 10px;
+        gap: 8px;
         padding-left: 0;
         border-left: none;
+        flex-shrink: 0;
+    }
+
+    .btn-theme {
+        font-size: 1.2rem;
+        width: 38px;
+        height: 38px;
+        padding: 0;
     }
 
     .btn-cmd {
-        padding: 8px 16px;
-        font-size: 0.85rem;
+        padding: 9px 14px;
+        font-size: 0.8rem;
     }
 
-    .form-wrapper {
-        padding: 24px;
-    }
-
-    .founder-wrapper {
+    .hero-actions {
         flex-direction: column;
-        text-align: center;
+        align-items: stretch;
+        gap: 14px;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .btn-large {
+        padding: 14px 24px;
+        font-size: 1.05rem;
+    }
+
+    .terminal-header {
+        padding: 12px 14px;
+    }
+
+    .terminal-title {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .terminal-body {
+        padding: 18px 16px;
+        font-size: 0.8rem;
+    }
+
+    .terminal-line {
+        margin-bottom: 10px;
+    }
+
+    .t-prompt {
+        margin-right: 8px;
+    }
+
+    .t-ok {
+        margin-left: 8px;
+    }
+
+    .pas-grid, .solution-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .pas-card,
+    .sol-card {
+        padding: 28px 22px;
+    }
+
+    .pas-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .sol-card h4 {
+        font-size: 1.2rem;
+    }
+
+    .stack-panel {
+        padding: 22px 16px;
     }
 
     .stack-panel-head {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+    }
+
+    .stack-title {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+
+    .stack-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 12px;
+    }
+
+    .tech-card {
+        padding: 22px 10px;
+        gap: 10px;
+    }
+
+    .tech-card .tech-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .tech-card span {
+        font-size: 0.92rem;
+        line-height: 1.3;
+        text-align: center;
+    }
+
+    .faq-item summary {
+        padding: 18px 44px 18px 48px;
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .faq-item summary .faq-index {
+        left: 16px;
+        top: 20px;
+        font-size: 0.8rem;
+    }
+
+    .faq-item summary::after {
+        right: 16px;
+    }
+
+    .faq-item p {
+        padding: 0 18px 18px 48px;
+        font-size: 0.95rem;
+    }
+
+    .form-wrapper {
+        padding: 32px 22px;
+    }
+
+    .founder-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+        padding: 32px 22px;
+    }
+
+    .founder-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .founder-content h3 {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+
+    .founder-content p {
+        font-size: 1rem;
+    }
+
+    .footer {
+        margin-top: 0;
+        padding: 32px 0 96px; /* leaves room for the WhatsApp button */
+    }
+
+    .whatsapp-float {
+        width: 54px;
+        height: 54px;
+        right: max(16px, env(safe-area-inset-right));
+        bottom: max(16px, env(safe-area-inset-bottom));
+    }
+
+    .whatsapp-float i {
+        font-size: 30px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hero {
+        padding: 44px 0 48px;
+    }
+
+    .hero-subtitle {
+        margin-bottom: 32px;
+    }
+
+    .stack-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-item {
+        padding: 14px 4px;
+    }
+
+    .stat-number {
+        font-size: 1.1rem;
+    }
+
+    .stat-label {
+        font-size: 0.62rem;
+        letter-spacing: 0;
+    }
+
+    .price-card {
+        padding: 32px 20px;
+    }
+
+    .form-wrapper,
+    .founder-wrapper {
+        padding: 28px 18px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .faq-item summary {
+        padding-left: 18px;
+    }
+
+    .faq-item summary .faq-index {
+        position: static;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .faq-item p {
+        padding-left: 18px;
+    }
+}
+
+/* Narrow phones: shorter CTA label */
+@media (max-width: 400px) {
+    .hide-xs {
+        display: none;
+    }
+
+    .terminal-body {
+        font-size: 0.74rem;
+    }
+
+    .tech-card span {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 330px) {
+    .logo-img {
+        height: 30px;
+    }
+
+    .logo-prompt {
+        font-size: 0.9rem;
+    }
+
+    .btn-cmd {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 290px) {
+    .logo-prompt {
+        display: none;
+    }
+}
+
+/* Touch devices: no hover lift (avoids "stuck" hover states) */
+@media (hover: none) {
+    .terminal-window:hover,
+    .stat-item:hover,
+    .pas-card:hover,
+    .sol-card:hover,
+    .tech-card:hover,
+    .price-card:hover,
+    .faq-item:hover,
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .footer-socials a:hover {
+        transform: none;
+    }
+}
+
+@media (min-width: 1001px) and (hover: none) {
+    .price-card.popular:hover {
+        transform: scale(1.05);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .fade-in {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .terminal-line {
+        opacity: 1;
+        animation: none;
     }
 }
